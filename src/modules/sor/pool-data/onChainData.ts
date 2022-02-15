@@ -1,6 +1,6 @@
 import { formatFixed } from '@ethersproject/bignumber';
 import { Provider } from '@ethersproject/providers';
-import { PoolFilter, SubgraphPoolBase } from '@balancer-labs/sor';
+import { PoolFilter, SubgraphPoolBase } from 'bcf-sor';
 import { Multicaller } from '@/lib/utils/multiCaller';
 import { isSameAddress } from '@/lib/utils';
 

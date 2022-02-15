@@ -1,4 +1,4 @@
-import { SOR, SorConfig, TokenPriceService } from '@balancer-labs/sor';
+import { SOR, SorConfig, TokenPriceService } from 'bcf-sor';
 import { Provider, JsonRpcProvider } from '@ethersproject/providers';
 import { SubgraphPoolDataService } from './pool-data/subgraphPoolDataService';
 import { CoingeckoTokenPriceService } from './token-price/coingeckoTokenPriceService';
@@ -70,11 +70,11 @@ export class Sor extends SOR {
         return typeof sorConfig.poolDataService === 'object'
             ? sorConfig.poolDataService
             : new SubgraphPoolDataService(
-                  subgraphClient,
-                  provider,
-                  network,
-                  sorConfig
-              );
+                subgraphClient,
+                provider,
+                network,
+                sorConfig
+            );
     }
 
     private static getTokenPriceService(

@@ -1,8 +1,8 @@
-import { PoolDataService } from '@balancer-labs/sor';
+import { PoolDataService } from 'bcf-sor';
 import { SubgraphPoolBase } from '@/.';
 
 export class MockPoolDataService implements PoolDataService {
-    constructor(private pools: SubgraphPoolBase[] = []) {}
+    constructor(private pools: SubgraphPoolBase[] = []) { }
 
     public async getPools(): Promise<SubgraphPoolBase[]> {
         return this.pools;

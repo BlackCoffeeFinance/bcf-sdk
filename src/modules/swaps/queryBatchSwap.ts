@@ -1,7 +1,7 @@
 import { BigNumberish } from '@ethersproject/bignumber';
 import { Contract } from '@ethersproject/contracts';
 import { AddressZero, Zero } from '@ethersproject/constants';
-import { SOR, SwapTypes, SwapInfo } from '@balancer-labs/sor';
+import { SOR, SwapTypes, SwapInfo } from 'bcf-sor';
 import {
     SwapType,
     BatchSwapStep,
@@ -90,10 +90,10 @@ export async function queryBatchSwapWithSor(
         if (deltas.length > 0) {
             returnTokens.forEach(
                 (t, i) =>
-                    (returnAmounts[i] =
-                        deltas[
-                            batchedSwaps.assets.indexOf(t.toLowerCase())
-                        ].toString() ?? Zero.toString())
+                (returnAmounts[i] =
+                    deltas[
+                        batchedSwaps.assets.indexOf(t.toLowerCase())
+                    ].toString() ?? Zero.toString())
             );
         }
     } catch (err) {

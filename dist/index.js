@@ -9,7 +9,7 @@ var address = require('@ethersproject/address');
 var bytes = require('@ethersproject/bytes');
 var abstractSigner = require('@ethersproject/abstract-signer');
 var contracts = require('@ethersproject/contracts');
-var sor = require('@balancer-labs/sor');
+var bcfSor = require('bcf-sor');
 var providers = require('@ethersproject/providers');
 var graphqlRequest = require('graphql-request');
 var graphql = require('graphql');
@@ -843,11 +843,11 @@ async function queryBatchSwapWithSor(sor, vaultContract, queryWithSor) {
 Use SOR to get swapInfo for tokenIn>tokenOut.
 SwapInfos.swaps has path information.
 */
-async function getSorSwapInfo(tokenIn, tokenOut, swapType, amount, sor$1) {
+async function getSorSwapInfo(tokenIn, tokenOut, swapType, amount, sor) {
     const swapTypeSOR = swapType === exports.SwapType.SwapExactIn
-        ? sor.SwapTypes.SwapExactIn
-        : sor.SwapTypes.SwapExactOut;
-    const swapInfo = await sor$1.getSwaps(tokenIn.toLowerCase(), tokenOut.toLowerCase(), swapTypeSOR, amount);
+        ? bcfSor.SwapTypes.SwapExactIn
+        : bcfSor.SwapTypes.SwapExactOut;
+    const swapInfo = await sor.getSwaps(tokenIn.toLowerCase(), tokenOut.toLowerCase(), swapTypeSOR, amount);
     return swapInfo;
 }
 /*
@@ -6952,7 +6952,7 @@ async function getOnChainBalances(subgraphPoolsOriginal, multiAddress, vaultAddr
         ...linearPoolAbi,
     ].map((row) => [row.name, row])));
     const multiPool = new Multicaller(multiAddress, provider, abis);
-    const supportedPoolTypes = Object.values(sor.PoolFilter);
+    const supportedPoolTypes = Object.values(bcfSor.PoolFilter);
     const subgraphPools = [];
     subgraphPoolsOriginal.forEach((pool) => {
         if (!supportedPoolTypes.includes(pool.poolType)) {
@@ -7230,7 +7230,7 @@ function getNetworkConfig(config) {
     };
 }
 
-class Sor extends sor.SOR {
+class Sor extends bcfSor.SOR {
     constructor(sdkConfig) {
         const network = getNetworkConfig(sdkConfig);
         const sorConfig = Sor.getSorConfig(sdkConfig);
@@ -7277,7 +7277,7 @@ class Sor extends sor.SOR {
 
 class Swaps {
     constructor(sorOrConfig) {
-        if (sorOrConfig instanceof sor.SOR) {
+        if (sorOrConfig instanceof bcfSor.SOR) {
             this.sor = sorOrConfig;
         }
         else {
@@ -8227,35 +8227,35 @@ class BalancerSDK {
 
 Object.defineProperty(exports, 'PoolFilter', {
     enumerable: true,
-    get: function () { return sor.PoolFilter; }
+    get: function () { return bcfSor.PoolFilter; }
 });
 Object.defineProperty(exports, 'SOR', {
     enumerable: true,
-    get: function () { return sor.SOR; }
+    get: function () { return bcfSor.SOR; }
 });
 Object.defineProperty(exports, 'SwapTypes', {
     enumerable: true,
-    get: function () { return sor.SwapTypes; }
+    get: function () { return bcfSor.SwapTypes; }
 });
 Object.defineProperty(exports, 'phantomStableBPTForTokensZeroPriceImpact', {
     enumerable: true,
-    get: function () { return sor.phantomStableBPTForTokensZeroPriceImpact; }
+    get: function () { return bcfSor.phantomStableBPTForTokensZeroPriceImpact; }
 });
 Object.defineProperty(exports, 'queryBatchSwapTokensIn', {
     enumerable: true,
-    get: function () { return sor.queryBatchSwapTokensIn; }
+    get: function () { return bcfSor.queryBatchSwapTokensIn; }
 });
 Object.defineProperty(exports, 'queryBatchSwapTokensOut', {
     enumerable: true,
-    get: function () { return sor.queryBatchSwapTokensOut; }
+    get: function () { return bcfSor.queryBatchSwapTokensOut; }
 });
 Object.defineProperty(exports, 'stableBPTForTokensZeroPriceImpact', {
     enumerable: true,
-    get: function () { return sor.stableBPTForTokensZeroPriceImpact; }
+    get: function () { return bcfSor.stableBPTForTokensZeroPriceImpact; }
 });
 Object.defineProperty(exports, 'weightedBPTForTokensZeroPriceImpact', {
     enumerable: true,
-    get: function () { return sor.weightedBPTForTokensZeroPriceImpact; }
+    get: function () { return bcfSor.weightedBPTForTokensZeroPriceImpact; }
 });
 exports.AaveHelpers = AaveHelpers;
 exports.AssetHelpers = AssetHelpers;

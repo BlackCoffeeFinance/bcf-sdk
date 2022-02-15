@@ -24,4 +24,4 @@ export {
     stableBPTForTokensZeroPriceImpact,
     weightedBPTForTokensZeroPriceImpact,
     SOR,
-} from '@balancer-labs/sor';
+} from 'bcf-sor';

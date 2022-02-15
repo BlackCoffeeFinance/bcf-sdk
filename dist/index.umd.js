@@ -1,8 +1,8 @@
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@ethersproject/abi'), require('@ethersproject/constants'), require('@ethersproject/bignumber'), require('@ethersproject/address'), require('@ethersproject/bytes'), require('@ethersproject/abstract-signer'), require('@ethersproject/contracts'), require('@balancer-labs/sor'), require('@ethersproject/providers'), require('graphql-request'), require('graphql'), require('lodash'), require('axios')) :
-    typeof define === 'function' && define.amd ? define(['exports', '@ethersproject/abi', '@ethersproject/constants', '@ethersproject/bignumber', '@ethersproject/address', '@ethersproject/bytes', '@ethersproject/abstract-signer', '@ethersproject/contracts', '@balancer-labs/sor', '@ethersproject/providers', 'graphql-request', 'graphql', 'lodash', 'axios'], factory) :
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@ethersproject/abi'), require('@ethersproject/constants'), require('@ethersproject/bignumber'), require('@ethersproject/address'), require('@ethersproject/bytes'), require('@ethersproject/abstract-signer'), require('@ethersproject/contracts'), require('bcf-sor'), require('@ethersproject/providers'), require('graphql-request'), require('graphql'), require('lodash'), require('axios')) :
+    typeof define === 'function' && define.amd ? define(['exports', '@ethersproject/abi', '@ethersproject/constants', '@ethersproject/bignumber', '@ethersproject/address', '@ethersproject/bytes', '@ethersproject/abstract-signer', '@ethersproject/contracts', 'bcf-sor', '@ethersproject/providers', 'graphql-request', 'graphql', 'lodash', 'axios'], factory) :
     (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global["balancer-js"] = {}, global.abi, global.constants, global.bignumber, global.address, global.bytes, global.abstractSigner, global.contracts, global.sor, global.providers, global.graphqlRequest, global.graphql, global.lodash, global.axios));
-})(this, (function (exports, abi, constants, bignumber, address, bytes, abstractSigner, contracts, sor, providers, graphqlRequest, graphql, lodash, axios) { 'use strict';
+})(this, (function (exports, abi, constants, bignumber, address, bytes, abstractSigner, contracts, bcfSor, providers, graphqlRequest, graphql, lodash, axios) { 'use strict';
 
     function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
 
@@ -831,11 +831,11 @@
     Use SOR to get swapInfo for tokenIn>tokenOut.
     SwapInfos.swaps has path information.
     */
-    async function getSorSwapInfo(tokenIn, tokenOut, swapType, amount, sor$1) {
+    async function getSorSwapInfo(tokenIn, tokenOut, swapType, amount, sor) {
         const swapTypeSOR = swapType === exports.SwapType.SwapExactIn
-            ? sor.SwapTypes.SwapExactIn
-            : sor.SwapTypes.SwapExactOut;
-        const swapInfo = await sor$1.getSwaps(tokenIn.toLowerCase(), tokenOut.toLowerCase(), swapTypeSOR, amount);
+            ? bcfSor.SwapTypes.SwapExactIn
+            : bcfSor.SwapTypes.SwapExactOut;
+        const swapInfo = await sor.getSwaps(tokenIn.toLowerCase(), tokenOut.toLowerCase(), swapTypeSOR, amount);
         return swapInfo;
     }
     /*
@@ -6940,7 +6940,7 @@
             ...linearPoolAbi,
         ].map((row) => [row.name, row])));
         const multiPool = new Multicaller(multiAddress, provider, abis);
-        const supportedPoolTypes = Object.values(sor.PoolFilter);
+        const supportedPoolTypes = Object.values(bcfSor.PoolFilter);
         const subgraphPools = [];
         subgraphPoolsOriginal.forEach((pool) => {
             if (!supportedPoolTypes.includes(pool.poolType)) {
@@ -7218,7 +7218,7 @@
         };
     }
 
-    class Sor extends sor.SOR {
+    class Sor extends bcfSor.SOR {
         constructor(sdkConfig) {
             const network = getNetworkConfig(sdkConfig);
             const sorConfig = Sor.getSorConfig(sdkConfig);
@@ -7265,7 +7265,7 @@
 
     class Swaps {
         constructor(sorOrConfig) {
-            if (sorOrConfig instanceof sor.SOR) {
+            if (sorOrConfig instanceof bcfSor.SOR) {
                 this.sor = sorOrConfig;
             }
             else {
@@ -8215,35 +8215,35 @@
 
     Object.defineProperty(exports, 'PoolFilter', {
         enumerable: true,
-        get: function () { return sor.PoolFilter; }
+        get: function () { return bcfSor.PoolFilter; }
     });
     Object.defineProperty(exports, 'SOR', {
         enumerable: true,
-        get: function () { return sor.SOR; }
+        get: function () { return bcfSor.SOR; }
     });
     Object.defineProperty(exports, 'SwapTypes', {
         enumerable: true,
-        get: function () { return sor.SwapTypes; }
+        get: function () { return bcfSor.SwapTypes; }
     });
     Object.defineProperty(exports, 'phantomStableBPTForTokensZeroPriceImpact', {
         enumerable: true,
-        get: function () { return sor.phantomStableBPTForTokensZeroPriceImpact; }
+        get: function () { return bcfSor.phantomStableBPTForTokensZeroPriceImpact; }
     });
     Object.defineProperty(exports, 'queryBatchSwapTokensIn', {
         enumerable: true,
-        get: function () { return sor.queryBatchSwapTokensIn; }
+        get: function () { return bcfSor.queryBatchSwapTokensIn; }
     });
     Object.defineProperty(exports, 'queryBatchSwapTokensOut', {
         enumerable: true,
-        get: function () { return sor.queryBatchSwapTokensOut; }
+        get: function () { return bcfSor.queryBatchSwapTokensOut; }
     });
     Object.defineProperty(exports, 'stableBPTForTokensZeroPriceImpact', {
         enumerable: true,
-        get: function () { return sor.stableBPTForTokensZeroPriceImpact; }
+        get: function () { return bcfSor.stableBPTForTokensZeroPriceImpact; }
     });
     Object.defineProperty(exports, 'weightedBPTForTokensZeroPriceImpact', {
         enumerable: true,
-        get: function () { return sor.weightedBPTForTokensZeroPriceImpact; }
+        get: function () { return bcfSor.weightedBPTForTokensZeroPriceImpact; }
     });
     exports.AaveHelpers = AaveHelpers;
     exports.AssetHelpers = AssetHelpers;

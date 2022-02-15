@@ -1,4 +1,4 @@
-import { PoolDataService, SubgraphPoolBase } from '@balancer-labs/sor';
+import { PoolDataService, SubgraphPoolBase } from 'bcf-sor';
 import {
     OrderDirection,
     Pool_OrderBy,
@@ -24,7 +24,7 @@ export class SubgraphPoolDataService implements PoolDataService {
         private readonly provider: Provider,
         private readonly network: BalancerNetworkConfig,
         private readonly sorConfig: BalancerSdkSorConfig
-    ) {}
+    ) { }
 
     public async getPools(): Promise<SubgraphPoolBase[]> {
         const pools = this.supportsLinearPools

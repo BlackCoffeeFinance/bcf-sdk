@@ -1,8 +1,8 @@
-import { TokenPriceService } from '@balancer-labs/sor';
+import { TokenPriceService } from 'bcf-sor';
 import axios from 'axios';
 
 export class CoingeckoTokenPriceService implements TokenPriceService {
-    constructor(private readonly chainId: number) {}
+    constructor(private readonly chainId: number) { }
 
     public async getNativeAssetPriceInToken(
         tokenAddress: string

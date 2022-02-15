@@ -1,5 +1,5 @@
 import { Contract } from '@ethersproject/contracts';
-import { SOR, SubgraphPoolBase } from '@balancer-labs/sor';
+import { SOR, SubgraphPoolBase } from 'bcf-sor';
 import {
     BatchSwap,
     QueryWithSorInput,
