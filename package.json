@@ -1,9 +1,9 @@
 {
     "name": "bcf-sdk",
-    "version": "0.1.1",
-    "description": "JavaScript SDK for interacting with the Balancer Protocol V2",
-    "license": "GPL-3.0-only",
-    "homepage": "https://github.com/balancer-labs/balancer-sdk/balancer-js#readme",
+    "version": "0.2.1",
+    "description": "JavaScript SDK for interacting with the Black Coffee finance applications",
+    "license": "MIT",
+    "homepage": "https://github.com/BlackCoffeeFinance/bcf-sdk#readme",
     "repository": {
         "type": "git",
         "url": "https://github.com/BlackCoffeeFinance/bcf-sdk",
