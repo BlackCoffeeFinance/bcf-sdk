@@ -16,6 +16,8 @@ const NETWORKS_WITH_LINEAR_POOLS = [
     Network.RINKEBY,
     Network.GÖRLI,
     Network.KOVAN,
+    Network.BINANCE_SMART_CHAIN,
+    Network.BSC_TESTNET
 ];
 
 export class SubgraphPoolDataService implements PoolDataService {

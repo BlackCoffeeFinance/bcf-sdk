@@ -765,6 +765,8 @@ var Network;
     Network[Network["KOVAN"] = 42] = "KOVAN";
     Network[Network["POLYGON"] = 137] = "POLYGON";
     Network[Network["ARBITRUM"] = 42161] = "ARBITRUM";
+    Network[Network["BINANCE_SMART_CHAIN"] = 56] = "BINANCE_SMART_CHAIN";
+    Network[Network["BSC_TESTNET"] = 97] = "BSC_TESTNET";
 })(Network || (Network = {}));
 
 /*
@@ -986,6 +988,38 @@ const BALANCER_NETWORK_CONFIG = {
         },
         urls: {
             subgraph: 'https://api.thegraph.com/subgraphs/name/balancer-labs/balancer-goerli-v2',
+        },
+        pools: {},
+    },
+    [Network.BINANCE_SMART_CHAIN]: {
+        chainId: Network.BINANCE_SMART_CHAIN,
+        addresses: {
+            contracts: {
+                vault: '0x65748E8287Ce4B9E6D83EE853431958851550311',
+                multicall: '0x42ad527de7d4e9d9d011ac45b31d8551f8fe9821', // replace to real addresses
+            },
+            tokens: {
+                wrappedNativeAsset: '0x9A1000D492d40bfccbc03f413A48F5B6516Ec0Fd', // replace to real addresses
+            },
+        },
+        urls: {
+            subgraph: 'https://api.thegraph.com/subgraphs/name/balancer-labs/balancer-goerli-v2', // replace to real addresses
+        },
+        pools: {},
+    },
+    [Network.BSC_TESTNET]: {
+        chainId: Network.BSC_TESTNET,
+        addresses: {
+            contracts: {
+                vault: '0x65748E8287Ce4B9E6D83EE853431958851550311',
+                multicall: '0x42ad527de7d4e9d9d011ac45b31d8551f8fe9821', // replace to real addresses
+            },
+            tokens: {
+                wrappedNativeAsset: '0x9A1000D492d40bfccbc03f413A48F5B6516Ec0Fd', // replace to real addresses
+            },
+        },
+        urls: {
+            subgraph: 'https://api.thegraph.com/subgraphs/name/balancer-labs/balancer-goerli-v2', // replace to real addresses
         },
         pools: {},
     },
@@ -7049,6 +7083,8 @@ const NETWORKS_WITH_LINEAR_POOLS = [
     Network.RINKEBY,
     Network.GÖRLI,
     Network.KOVAN,
+    Network.BINANCE_SMART_CHAIN,
+    Network.BSC_TESTNET
 ];
 class SubgraphPoolDataService {
     constructor(client, provider, network, sorConfig) {

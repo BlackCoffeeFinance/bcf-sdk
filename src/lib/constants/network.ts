@@ -6,4 +6,6 @@ export enum Network {
     KOVAN = 42,
     POLYGON = 137,
     ARBITRUM = 42161,
+    BINANCE_SMART_CHAIN = 56,
+    BSC_TESTNET = 97
 }

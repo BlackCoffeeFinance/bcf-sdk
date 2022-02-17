@@ -143,4 +143,40 @@ export const BALANCER_NETWORK_CONFIG: Record<Network, BalancerNetworkConfig> = {
         },
         pools: {},
     },
+    [Network.BINANCE_SMART_CHAIN]: {
+        chainId: Network.BINANCE_SMART_CHAIN, //5
+        addresses: {
+            contracts: {
+                vault: '0x65748E8287Ce4B9E6D83EE853431958851550311', // replace to real addresses
+                multicall: '0x42ad527de7d4e9d9d011ac45b31d8551f8fe9821', // replace to real addresses
+            },
+            tokens: {
+                wrappedNativeAsset:
+                    '0x9A1000D492d40bfccbc03f413A48F5B6516Ec0Fd', // replace to real addresses
+            },
+        },
+        urls: {
+            subgraph:
+                'https://api.thegraph.com/subgraphs/name/balancer-labs/balancer-goerli-v2', // replace to real addresses
+        },
+        pools: {},
+    },
+    [Network.BSC_TESTNET]: {
+        chainId: Network.BSC_TESTNET, //5
+        addresses: {
+            contracts: {
+                vault: '0x65748E8287Ce4B9E6D83EE853431958851550311', // replace to real addresses
+                multicall: '0x42ad527de7d4e9d9d011ac45b31d8551f8fe9821', // replace to real addresses
+            },
+            tokens: {
+                wrappedNativeAsset:
+                    '0x9A1000D492d40bfccbc03f413A48F5B6516Ec0Fd', // replace to real addresses
+            },
+        },
+        urls: {
+            subgraph:
+                'https://api.thegraph.com/subgraphs/name/balancer-labs/balancer-goerli-v2', // replace to real addresses
+        },
+        pools: {},
+    },
 };
